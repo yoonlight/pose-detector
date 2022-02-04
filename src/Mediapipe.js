@@ -1,7 +1,20 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useLayoutEffect } from "react";
 import { Camera } from "@mediapipe/camera_utils";
 import { Pose, POSE_CONNECTIONS, VERSION, Results } from "@mediapipe/pose";
 import { drawLandmarks, drawConnectors } from "@mediapipe/drawing_utils";
+
+function useWindowSize() {
+  const [size, setSize] = useState([0, 0]);
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener("resize", updateSize);
+    updateSize();
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+  return size;
+}
 
 /**
  *
@@ -33,9 +46,12 @@ const draw = (ctx, results) => {
 const Canvas = (props) => {
   const { results } = props;
   const canvasRef = useRef(null);
+  const [width, height] = useWindowSize();
   useEffect(() => {
     /** @type {HTMLCanvasElement} */
     const canvas = canvasRef.current;
+    canvas.width = width;
+    canvas.height = height;
     const ctx = canvas.getContext("2d");
     draw(ctx, results);
   });
