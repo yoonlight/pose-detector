@@ -2,6 +2,8 @@ import { useRef, useEffect, useState, useLayoutEffect } from "react";
 import { Camera } from "@mediapipe/camera_utils";
 import { Pose, POSE_CONNECTIONS, VERSION, Results } from "@mediapipe/pose";
 import { drawLandmarks, drawConnectors } from "@mediapipe/drawing_utils";
+import { getDefaultLandmarks } from "./custom/customLandmark";
+import { DEFAULT_POSE_CONNECTIONS } from "./custom/customPoseConnection";
 
 function useWindowSize() {
   const [size, setSize] = useState([0, 0]);
@@ -23,6 +25,9 @@ function useWindowSize() {
  */
 const draw = (ctx, results) => {
   if (!results) return;
+  const {poseLandmarks} = results
+  let landmark = getDefaultLandmarks(poseLandmarks)
+
   const cWidth = ctx.canvas.width;
   const cHeight = ctx.canvas.height;
   ctx.save();
@@ -32,11 +37,11 @@ const draw = (ctx, results) => {
   ctx.drawImage(results.image, 0, 0, cWidth, cHeight);
 
   ctx.globalCompositeOperation = "source-over";
-  drawConnectors(ctx, results.poseLandmarks, POSE_CONNECTIONS, {
+  drawConnectors(ctx, landmark, DEFAULT_POSE_CONNECTIONS, {
     color: "#00FF00",
     lineWidth: 4,
   });
-  drawLandmarks(ctx, results.poseLandmarks, {
+  drawLandmarks(ctx, landmark, {
     color: "#FF0000",
     lineWidth: 2,
   });
