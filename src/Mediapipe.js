@@ -5,6 +5,8 @@ import { Pose, VERSION, Results } from "@mediapipe/pose";
 import { drawLandmarks, drawConnectors } from "@mediapipe/drawing_utils";
 import { getDefaultLandmarks } from "./custom/customLandmark";
 import { DEFAULT_POSE_CONNECTIONS } from "./custom/customPoseConnection";
+import { getInputArr } from "./service/input";
+import { predict } from "./service/api";
 
 function useWindowSize() {
   const [size, setSize] = useState([0, 0]);
@@ -24,10 +26,11 @@ function useWindowSize() {
  * @param {CanvasRenderingContext2D} ctx
  * @param {Results} results
  */
-const draw = (ctx, results) => {
+const draw = async (ctx, results) => {
   if (!results) return;
   const {poseLandmarks} = results
   let landmark = getDefaultLandmarks(poseLandmarks)
+  const arr = getInputArr(landmark);
 
   const cWidth = ctx.canvas.width;
   const cHeight = ctx.canvas.height;
@@ -47,6 +50,8 @@ const draw = (ctx, results) => {
     lineWidth: 2,
   });
   ctx.restore();
+  const res = await predict(arr);
+  if (res.status === 200) console.log(res.data);
 };
 
 const Canvas = (props) => {
