@@ -4,6 +4,7 @@
 
 - MediaPipe
 - React
+- Socket.io
 
 ## Command
 
@@ -17,7 +18,10 @@ yarn build # build static file
 
 ### src
 
-- index.js: start point
-- Mediapipe.js: load MediaPipe module
-- custom/customLandmark.js: custom MediaPipe pose landmark
-- custom/customPoseConnection.js: custom MediaPipe pose connection
+- index: start point
+- App: start point component
+- Mediapipe: load mediapipe component
+- custom/customLandmark: custom MediaPipe pose landmark
+- custom/customPoseConnection: custom MediaPipe pose connection
+- service/input: input for websocket body
+- service/websocket: socket.io module
