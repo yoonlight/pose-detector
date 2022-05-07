@@ -6,7 +6,7 @@ import { drawLandmarks, drawConnectors } from "@mediapipe/drawing_utils";
 import { getDefaultLandmarks } from "./custom/customLandmark";
 import { DEFAULT_POSE_CONNECTIONS } from "./custom/customPoseConnection";
 import { getInputArr } from "./service/input";
-import { predict } from "./service/api";
+import { socket } from "./service/websocket";
 
 function useWindowSize() {
 	const [size, setSize] = useState([0, 0]);
@@ -40,8 +40,6 @@ const draw = async (ctx, results) => {
 
 	ctx.drawImage(results.image, 0, 0, cWidth, cHeight);
 
-  const res = await predict(arr);
-  if (res.status === 200) console.log(res.data);
 	ctx.globalCompositeOperation = "source-over";
 	drawConnectors(ctx, landmark, DEFAULT_POSE_CONNECTIONS, {
 		color: "#00FF00",
@@ -52,6 +50,7 @@ const draw = async (ctx, results) => {
 		lineWidth: 2,
 	});
 	ctx.restore();
+	if (socket.connected) socket.emit("data", arr);
 };
 
 const Canvas = (props) => {
