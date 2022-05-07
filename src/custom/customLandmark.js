@@ -19,7 +19,7 @@ export const getDefaultLandmarks = (poseLandmarks) => {
  * @param {NormalizedLandmarkList} poseLandmarks
  * @returns {NormalizedLandmarkList}
  */
- export const getCrunchLandmarks = (poseLandmarks) => {
+export const getCrunchLandmarks = (poseLandmarks) => {
 	let landmarks1 = poseLandmarks.slice(1, 3);
 	let landmarks2 = poseLandmarks.slice(7, 13);
 	let landmarks = [...landmarks1, ...landmarks2];
