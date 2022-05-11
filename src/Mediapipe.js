@@ -6,7 +6,7 @@ import { drawLandmarks, drawConnectors } from "@mediapipe/drawing_utils";
 import { getDefaultLandmarks } from "./custom/customLandmark";
 import { DEFAULT_POSE_CONNECTIONS } from "./custom/customPoseConnection";
 import { getInputArr } from "./service/input";
-import { socket } from "./service/websocket";
+import { detect } from "./service/tf";
 
 function useWindowSize() {
 	const [size, setSize] = useState([0, 0]);
@@ -50,7 +50,8 @@ const draw = async (ctx, results) => {
 		lineWidth: 2,
 	});
 	ctx.restore();
-	if (socket.connected) socket.emit("data", arr);
+	const result = await detect(arr);
+	console.log(result);
 };
 
 const Canvas = (props) => {
