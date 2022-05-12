@@ -5,7 +5,9 @@ class HAR {
 	model;
 	seq = [];
 	async loadModel() {
-		this.model = await tf.loadLayersModel("model.json");
+		this.model = await tf.loadLayersModel("model.json", {
+			weightPathPrefix: "https://yoonlight.github.io/pose-detector",
+		});
 	}
 
 	/**
