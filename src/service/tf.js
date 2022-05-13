@@ -7,16 +7,25 @@ import { har } from "./model";
 const getJoint = (landmark) => tf.tensor(landmark);
 
 /**
+ * convert array to tensor applying index slicing
+ * @param {number[][]} array
+ * @param {number[]} vectorIdArr
+ * @returns
+ */
+const cv2Vec = (array, vectorIdArr) => {
+	const vArr = vectorIdArr.map((vId) => array[vId]);
+	return tf.tensor(vArr);
+};
+
+/**
  *
  * @param {number[][]} landmark
  */
 const getPointAngle = async (landmark) => {
 	const v1Id = [4, 2, 2, 8, 10, 12, 3, 1, 1, 7, 9, 11];
 	const v2Id = [6, 4, 8, 10, 12, 16, 5, 3, 7, 9, 11, 15];
-	const v1Arr = v1Id.map((num) => landmark[num]);
-	const v2Arr = v2Id.map((num) => landmark[num]);
-	const v1 = tf.tensor(v1Arr);
-	const v2 = tf.tensor(v2Arr);
+	const v1 = cv2Vec(landmark, v1Id);
+	const v2 = cv2Vec(landmark, v2Id);
 
 	let v = tf.sub(v2, v1);
 	v = tf.div(v, tf.norm(v));
@@ -24,10 +33,8 @@ const getPointAngle = async (landmark) => {
 
 	const newV1Id = [0, 1, 2, 3, 4, 6, 7, 8, 9, 10];
 	const newV2Id = [1, 2, 3, 4, 5, 7, 8, 9, 10, 11];
-	const newV1Arr = newV1Id.map((num) => v[num]);
-	const newV2Arr = newV2Id.map((num) => v[num]);
-	const newV1 = tf.tensor(newV1Arr);
-	const newV2 = tf.tensor(newV2Arr);
+	const newV1 = cv2Vec(v, newV1Id);
+	const newV2 = cv2Vec(v, newV2Id);
 
 	// https://en.wikipedia.org/wiki/Einstein_notation
 	const radians = tf.acos(tf.einsum("nt, nt->n", newV1, newV2));
