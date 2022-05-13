@@ -4,7 +4,7 @@
 
 - MediaPipe
 - React
-- Socket.io
+- Tensorflow.js
 
 ## Command
 
@@ -16,12 +16,26 @@ yarn build # build static file
 
 ## Structure
 
-### src
-
-- index: start point
-- App: start point component
-- Mediapipe: load mediapipe component
-- custom/customLandmark: custom MediaPipe pose landmark
-- custom/customPoseConnection: custom MediaPipe pose connection
-- service/input: input for websocket body
-- service/websocket: socket.io module
+```
+src
+│  App.css
+│  App.js: start point component
+│  App.test.js
+│  index.js: start point
+│  logo.svg
+│  Mediapipe.js: load mediapipe component
+│  reportWebVitals.js
+│  service-worker.js
+│  serviceWorkerRegistration.js
+│
+├─custom
+│      customLandmark.js: custom MediaPipe pose landmark
+│      customPoseConnection.js: custom MediaPipe pose connection
+│
+└─service
+        api.js
+        input.js
+        model.js: tensorflow js model module
+        tf.js: tensorflow js module
+        websocket.js
+```
