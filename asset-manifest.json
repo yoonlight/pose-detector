@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/pose-detector/static/js/main.b0562946.js",
+    "main.js": "/pose-detector/static/js/main.fc42af0d.js",
     "static/js/377.164654ed.chunk.js": "/pose-detector/static/js/377.164654ed.chunk.js",
     "service-worker.js": "/pose-detector/service-worker.js",
     "index.html": "/pose-detector/index.html",
-    "main.b0562946.js.map": "/pose-detector/static/js/main.b0562946.js.map",
+    "main.fc42af0d.js.map": "/pose-detector/static/js/main.fc42af0d.js.map",
     "377.164654ed.chunk.js.map": "/pose-detector/static/js/377.164654ed.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.b0562946.js"
+    "static/js/main.fc42af0d.js"
   ]
 }
