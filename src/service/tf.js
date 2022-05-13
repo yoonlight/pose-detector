@@ -18,6 +18,16 @@ const cv2Vec = (array, vectorIdArr) => {
 };
 
 /**
+ * convert radian to degree
+ * @param {tf.Tensor} radians
+ * @returns
+ */
+const radian2degree = (radians) => {
+	const pi = tf.scalar(180 / Math.PI);
+	return tf.mul(radians, pi);
+};
+
+/**
  *
  * @param {number[][]} landmark
  */
@@ -38,8 +48,7 @@ const getPointAngle = async (landmark) => {
 
 	// https://en.wikipedia.org/wiki/Einstein_notation
 	const radians = tf.acos(tf.einsum("nt, nt->n", newV1, newV2));
-	const pi = tf.scalar(180 / Math.PI);
-	const degree = tf.mul(radians, pi);
+	const degree = radian2degree(radians);
 	return degree;
 };
 
