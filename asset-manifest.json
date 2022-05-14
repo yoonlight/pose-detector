@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/pose-detector/static/js/main.fc42af0d.js",
-    "static/js/377.164654ed.chunk.js": "/pose-detector/static/js/377.164654ed.chunk.js",
-    "service-worker.js": "/pose-detector/service-worker.js",
-    "index.html": "/pose-detector/index.html",
-    "main.fc42af0d.js.map": "/pose-detector/static/js/main.fc42af0d.js.map",
-    "377.164654ed.chunk.js.map": "/pose-detector/static/js/377.164654ed.chunk.js.map"
+    "main.js": "https://yoonlight.github.io/pose-detector/static/js/main.3cb7cb08.js",
+    "static/js/377.164654ed.chunk.js": "https://yoonlight.github.io/pose-detector/static/js/377.164654ed.chunk.js",
+    "service-worker.js": "https://yoonlight.github.io/pose-detector/service-worker.js",
+    "index.html": "https://yoonlight.github.io/pose-detector/index.html",
+    "main.3cb7cb08.js.map": "https://yoonlight.github.io/pose-detector/static/js/main.3cb7cb08.js.map",
+    "377.164654ed.chunk.js.map": "https://yoonlight.github.io/pose-detector/static/js/377.164654ed.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.fc42af0d.js"
+    "static/js/main.3cb7cb08.js"
   ]
 }
