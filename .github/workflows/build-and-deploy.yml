@@ -13,7 +13,8 @@ jobs:
         run: |
           yarn
           yarn build
-
+        env:
+          PUBLIC_URL: https://${{ github.repository_owner }}.github.io/pose-detector/
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
