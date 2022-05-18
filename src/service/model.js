@@ -12,6 +12,7 @@ class HAR {
 		const modelUrl =
 			`https://raw.githubusercontent.com/yoonlight/pose-detector/main/models/${pose}/model.json`;
 		this.model = await tf.loadLayersModel(modelUrl);
+		this.seq.splice(0, this.seq.length);
 	}
 
 	/**
