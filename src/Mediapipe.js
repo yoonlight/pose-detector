@@ -51,7 +51,7 @@ const draw = async (ctx, results) => {
 	});
 
 	const result = await detect(arr);
-	if (result) ctx.fillText(result, 180, 200);
+	if (result) ctx.fillText(result[0], 180, 200);
 	ctx.restore();
 };
 
