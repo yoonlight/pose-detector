@@ -49,9 +49,10 @@ const draw = async (ctx, results) => {
 		color: "#FF0000",
 		lineWidth: 2,
 	});
-	ctx.restore();
+
 	const result = await detect(arr);
-	console.log(result);
+	if (result) ctx.fillText(result, 180, 200);
+	ctx.restore();
 };
 
 const Canvas = (props) => {
