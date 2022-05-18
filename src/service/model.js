@@ -4,8 +4,13 @@ class HAR {
 	/** @type tf.LayersModel */
 	model;
 	seq = [];
-	async loadModel() {
-		const modelUrl = "https://raw.githubusercontent.com/yoonlight/pose-detector/main/public/model.json"
+	/**
+	 *
+	 * @param {string} pose
+	 */
+	async loadModel(pose) {
+		const modelUrl =
+			`https://raw.githubusercontent.com/yoonlight/pose-detector/main/public/models/${pose}/model.json`;
 		this.model = await tf.loadLayersModel(modelUrl);
 	}
 
