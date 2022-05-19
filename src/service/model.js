@@ -10,8 +10,7 @@ class HAR {
 	 * @param {string} pose
 	 */
 	async loadModel(pose) {
-		const modelUrl =
-			`https://raw.githubusercontent.com/yoonlight/pose-detector/main/models/${pose}/model.json`;
+		const modelUrl = `https://raw.githubusercontent.com/kw-kwix/HAR_model/main/models/${pose}/model.json`;
 		this.model = await tf.loadLayersModel(modelUrl);
 		this.seq.splice(0, this.seq.length);
 	}
