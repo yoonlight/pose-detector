@@ -1,4 +1,5 @@
 import React from "react";
+import { RealTimeChart } from "./components/Chart";
 import Mediapipe from "./Mediapipe";
 import { har } from "./service/model";
 
@@ -23,6 +24,7 @@ function App() {
 			<button onClick={() => setPose("standing_side_crunch")}>
 				standing_side_crunch
 			</button>
+			<RealTimeChart></RealTimeChart>
 			<Mediapipe></Mediapipe>
 		</div>
 	);

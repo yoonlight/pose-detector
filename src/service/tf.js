@@ -67,5 +67,6 @@ export const detect = async (landmark) => {
 	har.seq.shift();
 	const input = tf.expandDims(tf.tensor(har.seq), 0);
 	const result = await har.predict(input);
+	har.result = result[0];
 	return result;
 };

@@ -50,8 +50,7 @@ const draw = async (ctx, results) => {
 		lineWidth: 2,
 	});
 
-	const result = await detect(arr);
-	if (result) ctx.fillText(result[0], 180, 200);
+	await detect(arr);
 	ctx.restore();
 };
 

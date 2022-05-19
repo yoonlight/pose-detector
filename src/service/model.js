@@ -4,6 +4,7 @@ class HAR {
 	/** @type tf.LayersModel */
 	model;
 	seq = [];
+	result = 0;
 	/**
 	 *
 	 * @param {string} pose
