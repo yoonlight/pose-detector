@@ -8,6 +8,7 @@ import {
 	Title,
 	Tooltip,
 	Legend,
+	registerables
 } from "chart.js";
 import { Chart } from "react-chartjs-2";
 import "chartjs-adapter-luxon";
@@ -15,6 +16,7 @@ import ChartStreaming from "chartjs-plugin-streaming";
 import { har } from "../service/model";
 
 ChartJS.register(
+	...registerables,
 	CategoryScale,
 	LinearScale,
 	PointElement,
