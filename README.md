@@ -5,6 +5,7 @@
 - MediaPipe
 - React
 - Tensorflow.js
+- Scikit.js
 
 ## Command
 
@@ -38,4 +39,5 @@ src
         model.js: tensorflow js model module
         tf.js: tensorflow js module
         websocket.js
+        scikit.js: scikit learn js module
 ```
