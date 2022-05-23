@@ -1,5 +1,6 @@
 import * as tf from "@tensorflow/tfjs";
 import { har } from "./model";
+import { scaler } from "./scikit";
 
 /**
  * @param {number[][]} landmark
@@ -62,7 +63,9 @@ export const detect = async (landmark) => {
 	const seqLength = 15;
 	const joint = getJoint(landmark);
 	const angle = await getPointAngle(landmark);
-	const seq = await tf.concat([joint.flatten(), angle]).data();
+	const reshape_angle = angle.reshape([-1, 1]);
+	const scaled_angle = scaler(reshape_angle);
+	const seq = await tf.concat([joint.flatten(), scaled_angle.flatten()]).data();
 	if (har.seq.push(seq) <= seqLength) return;
 	har.seq.shift();
 	const input = tf.expandDims(tf.tensor(har.seq), 0);
