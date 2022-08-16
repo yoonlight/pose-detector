@@ -64,7 +64,7 @@ export const detect = async (landmark) => {
 	const joint = getJoint(landmark);
 	const angle = await getPointAngle(landmark);
 	const reshape_angle = angle.reshape([-1, 1]);
-	const scaled_angle = scaler(reshape_angle);
+	const scaled_angle = reshape_angle/180;
 	const seq = await tf.concat([joint.flatten(), scaled_angle.flatten()]).data();
 	if (har.seq.push(seq) <= seqLength) return;
 	har.seq.shift();
