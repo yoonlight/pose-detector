@@ -10,7 +10,7 @@ function App() {
 	let [action, setAction]=useState('----');
 	
 	function poseName (e) {
-		setPose(`LS_${e.target.value}_model_tfjs`)
+		setPose(`CNN1_${e.target.value}_model_tfjs`)
 		setAction(`${e.target.value}`)
 	}
 	
@@ -43,8 +43,9 @@ function App() {
 			<button className="w-btn w-btn-indigo" value="over_head_press"onClick={e=>poseName(e)}>overhead press</button>
 			<button className="w-btn w-btn-indigo" value="side_crunch" onClick={e=>poseName(e)}>side crunch</button>
 			<button className="w-btn w-btn-indigo" value="side_lunge" onClick={e=>poseName(e)}>side lunge</button>
+			<button className="w-btn w-btn-indigo" value="side_raise" onClick={e=>poseName(e)}>side raise</button>
 			<button className="w-btn w-btn-indigo" value="squat" onClick={e=>poseName(e)}>squat</button>
-			<div>
+			<div> 	
 				<Mediapipe></Mediapipe>
 				<div className="detail">
 					<a>	현재 운동 : { action }</a><br/>

@@ -27,7 +27,6 @@ class Clock extends React.Component {
     render() {
         return (
             <div >
-                <img className="calendarImg" src="img/calendar.png" />
                 <span className="clock">{this.state.date.toLocaleString('ko-kr')}</span>
             </div>
         )
