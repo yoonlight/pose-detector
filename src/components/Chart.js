@@ -58,7 +58,14 @@ export const options = {
 					chart.update("quiet");
 				},
 			},
-		},
+		},	
+		y: {
+			min: 0,
+			max: 1,
+			ticks: {
+			  stepSize: 0.1,
+			},
+		  },
 	},
 };
 
