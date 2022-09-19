@@ -10,7 +10,7 @@ function App() {
 	let [action, setAction]=useState('----');
 	
 	function poseName (e) {
-		setPose(`CNN1_${e.target.value}_model_tfjs`)
+		setPose(`CNN_${e.target.value}_model_tfjs`)
 		setAction(`${e.target.value}`)
 	}
 	
