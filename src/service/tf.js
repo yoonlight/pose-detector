@@ -63,6 +63,8 @@ export const detect = async (landmark) => {
 	const seqLength = 15;
 	const joint = getJoint(landmark);
 	const angle = await getPointAngle(landmark);
+	const angleList = await angle.data();
+	har.countExercise(angleList);
 	const reshape_angle = angle.reshape([1, -1]);
 	const _scaled_angle = scaler(reshape_angle);
 	const scaled_angle = _scaled_angle.reshape([-1, 1]);

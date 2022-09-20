@@ -8,7 +8,8 @@ import { RealTimeChart } from "./components/Chart";
 function App() {
 	let [score, setScore]=useState(0);
 	let [action, setAction]=useState('----');
-	
+	let [count, setCount] = useState(0);
+
 	function poseName (e) {
 		setPose(`CNN_${e.target.value}_model_tfjs`)
 		setAction(`${e.target.value}`)
@@ -16,16 +17,22 @@ function App() {
 	
 	
 	const [pose, setPose] = React.useState(undefined);
+	// Reference
+	// https://xiubindev.tistory.com/100
 	React.useEffect(() => {
 		if (pose) {
 			har.loadModel(pose);
 			console.log("load model");
 		}
-	});
+	},[pose]);
 
+	// TODO score, count 설정 useEffect로 제어하기
+	// React.useEffect(() => {
+	// },[pose]);
 	setInterval(() => {
 		setTimeout(() => {
 			setScore(Math.round(har.result*100))
+			setCount(har.count);
 		}, 100)
 	}, 100);
 
@@ -48,8 +55,8 @@ function App() {
 			<div> 	
 				<Mediapipe></Mediapipe>
 				<div className="detail">
-					<a>	현재 운동 : { action }</a><br/>
-					<a> 운동 횟수 : </a>
+					<div> 현재 운동 : {action}</div>
+					<div> 운동 횟수 : {count}</div>
 					<div>
 						<div>정확도 : { score }%</div>  
 						<progress value={score} max="100"></progress>
