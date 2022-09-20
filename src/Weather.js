@@ -37,11 +37,11 @@ class Weather extends Component {
             return (
                 <div>
                     <div>
-                        <img class="weatherImg" src={imgSrc}/>
+                        <img className="weatherImg" src={imgSrc} alt=""/>
                         <div><b>{this.state.weather}</b></div>
                     </div>
                     <span>
-                        <sapn className="temp"> {this.state.temp}° </sapn>
+                        <span className="temp"> {this.state.temp}° </span>
                     </span>
                     <div>
                         <div className="temp2">
