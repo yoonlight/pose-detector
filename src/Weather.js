@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
-import { data } from '@tensorflow/tfjs';
 
 class Weather extends Component {
     constructor(props) {
@@ -14,7 +13,6 @@ class Weather extends Component {
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`;
         axios.get(url)
             .then(responseData => {
-                console.log(responseData);
                 const data = responseData.data;
                 this.setState({
                     temp: Math.round((data.main.temp-273.15)*10)/10,

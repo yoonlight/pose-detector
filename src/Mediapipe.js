@@ -2,7 +2,7 @@ import { useRef, useEffect, useState, useLayoutEffect } from "react";
 import { Camera } from "@mediapipe/camera_utils";
 // eslint-disable-next-line no-unused-vars
 import { Pose, VERSION, Results } from "@mediapipe/pose";
-import { drawLandmarks, drawConnectors } from "@mediapipe/drawing_utils";
+import { drawLandmarks } from "@mediapipe/drawing_utils";
 import { getDefaultLandmarks } from "./custom/customLandmark";
 // import { DEFAULT_POSE_CONNECTIONS } from "./custom/customPoseConnection";
 import { getInputArr } from "./service/input";
