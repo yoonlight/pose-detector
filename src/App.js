@@ -11,8 +11,8 @@ function App() {
 	let [count, setCount] = useState(0);
 
 	function poseName (e) {
-		setPose(`CNN_${e.target.value}_model_tfjs`)
-		setAction(`${e.target.value}`)
+		setPose(e.target.value)
+		setAction(e.target.value)
 	}
 	
 	
@@ -22,19 +22,18 @@ function App() {
 	React.useEffect(() => {
 		if (pose) {
 			har.loadModel(pose);
-			console.log("load model");
 		}
 	},[pose]);
 
 	// TODO score, count 설정 useEffect로 제어하기
-	// React.useEffect(() => {
-	// },[pose]);
-	setInterval(() => {
-		setTimeout(() => {
-			setScore(Math.round(har.result*100))
-			setCount(har.count);
-		}, 100)
-	}, 100);
+	React.useEffect(() => {
+		setInterval(() => {
+			setTimeout(() => {
+				setScore(Math.round(har.result*100))
+				setCount(har.count);
+			}, 100)
+		}, 100);
+	},[]);
 
 	return (
 		<div className="App">
