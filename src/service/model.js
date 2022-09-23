@@ -1,5 +1,9 @@
 import * as tf from "@tensorflow/tfjs";
 
+const between = (value, min, max) => {
+	return value >= min && value <= max;
+};
+
 class HAR {
 	/** @type tf.LayersModel */
 	model;
@@ -8,6 +12,8 @@ class HAR {
 	state = false;
 	count = 0;
 	pose = ""
+	leftAngle = 0;
+	rightAngle = 0;
 
 	/**
 	 *
@@ -21,24 +27,32 @@ class HAR {
 	 *
 	 * 무릎: 3, 9
 	 *
+	 * Reference
+	 *
+	 * - https://norux.me/61
+	 *
 	 * @param {[]} angle
 	 * @returns {void}
-	 */	
+	 */
 	pose_count = {
-		babel_curl: function (angle) {
-			// console.log(angle[0], angle[5]);
+		babel_curl: (angle) => {
+			this.leftAngle = angle[0];
+			this.rightAngle = angle[5];
+
 			if (this.state === false) {
-				if (angle[0] > 150 && angle[5] > 150) {
+				if (between(this.leftAngle, 30, 35)) {
 					this.state = true;
 				}
 			} else if (this.state === true) {
-				if (angle[0] < 120 && angle[5] < 120) {
+				if (between(this.leftAngle, 50, 55)) {
 					this.count += 1;
 					this.state = false;
 				}
 			}
 		},
-		deadlift: function (angle) {
+		deadlift: (angle) => {
+			this.leftAngle = angle[3];
+			this.rightAngle = angle[9];
 			if (this.state === false) {
 				if (angle[3] > 150) {
 					this.state = true;
@@ -50,7 +64,9 @@ class HAR {
 				}
 			}
 		},
-		knee_up: function (angle) {
+		knee_up: (angle) => {
+			this.leftAngle = angle[3];
+			this.rightAngle = angle[9];
 			if (this.state === false) {
 				// TODO && angle[9] 어떻게 처리할지?
 				if (angle[3] < 60) {
@@ -63,7 +79,9 @@ class HAR {
 				}
 			}
 		},
-		leg_raise: function (angle) {
+		leg_raise: (angle) => {
+			this.leftAngle = angle[2];
+			this.rightAngle = angle[8];
 			if (this.state === false) {
 				if (angle[2] > 150) {
 					this.state = true;
@@ -75,7 +93,9 @@ class HAR {
 				}
 			}
 		},
-		over_head_press: function (angle) {
+		over_head_press: (angle) => {
+			this.leftAngle = angle[3];
+			this.rightAngle = angle[9];
 			if (this.state === false) {
 				if (angle[0] < 120) {
 					this.state = true;
@@ -87,7 +107,9 @@ class HAR {
 				}
 			}
 		},
-		side_crunch: function (angle) {
+		side_crunch: (angle) => {
+			this.leftAngle = angle[3];
+			this.rightAngle = angle[9];
 			if (this.state === false) {
 				if (angle[3] < 60) {
 					this.state = true;
@@ -99,7 +121,9 @@ class HAR {
 				}
 			}
 		},
-		side_lunge: function (angle) {
+		side_lunge: (angle) => {
+			this.leftAngle = angle[3];
+			this.rightAngle = angle[9];
 			if (this.state === false) {
 				if (angle[3] > 150) {
 					this.state = true;
@@ -111,7 +135,9 @@ class HAR {
 				}
 			}
 		},
-		side_raise: function (angle) {
+		side_raise: (angle) => {
+			this.leftAngle = angle[3];
+			this.rightAngle = angle[9];
 			if (this.state === false) {
 				if (angle[3] < 60) {
 					this.state = true;
@@ -123,7 +149,9 @@ class HAR {
 				}
 			}
 		},
-		squat: function (angle) {
+		squat: (angle) => {
+			this.leftAngle = angle[3];
+			this.rightAngle = angle[9];
 			if (this.state === false) {
 				if (angle[3] > 150) {
 					this.state = true;
