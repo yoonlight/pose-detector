@@ -54,11 +54,11 @@ class HAR {
 			this.leftAngle = angle[3];
 			this.rightAngle = angle[9];
 			if (this.state === false) {
-				if (angle[3] > 150) {
+				if (between(this.leftAngle, 100, 105)) {
 					this.state = true;
 				}
 			} else if (this.state === true) {
-				if (angle[3] < 120) {
+				if (between(this.leftAngle, 50, 55)) {
 					this.count += 1;
 					this.state = false;
 				}
@@ -69,11 +69,17 @@ class HAR {
 			this.rightAngle = angle[9];
 			if (this.state === false) {
 				// TODO && angle[9] 어떻게 처리할지?
-				if (angle[3] < 60) {
+				if (
+					between(this.leftAngle, 45, 50) &&
+					between(this.rightAngle, 95, 100)
+				) {
 					this.state = true;
 				}
 			} else if (this.state === true) {
-				if (angle[3] > 90) {
+				if (
+					between(this.leftAngle, 120, 125) ||
+					between(this.rightAngle, 70, 75)
+				) {
 					this.count += 1;
 					this.state = false;
 				}
@@ -83,25 +89,37 @@ class HAR {
 			this.leftAngle = angle[2];
 			this.rightAngle = angle[8];
 			if (this.state === false) {
-				if (angle[2] > 150) {
+				if (
+					between(this.leftAngle, 5, 12) &&
+					between(this.rightAngle, 10, 17)
+				) {
 					this.state = true;
 				}
 			} else if (this.state === true) {
-				if (angle[2] < 120) {
+				if (
+					between(this.leftAngle, 75, 85) &&
+					between(this.rightAngle, 5, 10)
+				) {
 					this.count += 1;
 					this.state = false;
 				}
 			}
 		},
 		over_head_press: (angle) => {
-			this.leftAngle = angle[3];
-			this.rightAngle = angle[9];
+			this.leftAngle = angle[0];
+			this.rightAngle = angle[5];
 			if (this.state === false) {
-				if (angle[0] < 120) {
+				if (
+					between(this.leftAngle, 60, 70) &&
+					between(this.rightAngle, 65, 75)
+				) {
 					this.state = true;
 				}
 			} else if (this.state === true) {
-				if (angle[3] > 150) {
+				if (
+					between(this.leftAngle, 5, 10) &&
+					between(this.rightAngle, 10, 15)
+				) {
 					this.count += 1;
 					this.state = false;
 				}
@@ -111,11 +129,19 @@ class HAR {
 			this.leftAngle = angle[3];
 			this.rightAngle = angle[9];
 			if (this.state === false) {
-				if (angle[3] < 60) {
+				if (
+					between(this.leftAngle, 40, 45) &&
+					between(this.rightAngle, 100, 105)
+				) {
 					this.state = true;
 				}
 			} else if (this.state === true) {
-				if (angle[3] > 90) {
+				if (
+					(between(this.leftAngle, 150, 155) &&
+						between(this.rightAngle, 105, 110)) ||
+					(between(this.leftAngle, 40, 45) &&
+						between(this.rightAngle, 105, 110))
+				) {
 					this.count += 1;
 					this.state = false;
 				}
@@ -125,25 +151,39 @@ class HAR {
 			this.leftAngle = angle[3];
 			this.rightAngle = angle[9];
 			if (this.state === false) {
-				if (angle[3] > 150) {
+				if (
+					between(this.leftAngle, 65, 75) &&
+					between(this.rightAngle, 100, 110)
+				) {
 					this.state = true;
 				}
 			} else if (this.state === true) {
-				if (angle[3] < 120) {
+				if (
+					(between(this.leftAngle, 110, 115) &&
+						between(this.rightAngle, 115, 120)) ||
+					(between(this.leftAngle, 45, 55) &&
+						between(this.rightAngle, 75, 80))
+				) {
 					this.count += 1;
 					this.state = false;
 				}
 			}
 		},
 		side_raise: (angle) => {
-			this.leftAngle = angle[3];
-			this.rightAngle = angle[9];
+			this.leftAngle = angle[0];
+			this.rightAngle = angle[5];
 			if (this.state === false) {
-				if (angle[3] < 60) {
+				if (
+					between(this.leftAngle, 75, 80) &&
+					between(this.rightAngle, 80, 85)
+				) {
 					this.state = true;
 				}
 			} else if (this.state === true) {
-				if (angle[3] > 90) {
+				if (
+					between(this.leftAngle, 50, 55) &&
+					between(this.rightAngle, 50, 55)
+				) {
 					this.count += 1;
 					this.state = false;
 				}
@@ -153,11 +193,17 @@ class HAR {
 			this.leftAngle = angle[3];
 			this.rightAngle = angle[9];
 			if (this.state === false) {
-				if (angle[3] > 150) {
+				if (
+					between(this.leftAngle, 45, 50) &&
+					between(this.rightAngle, 95, 100)
+				) {
 					this.state = true;
 				}
 			} else if (this.state === true) {
-				if (angle[3] < 120) {
+				if (
+					between(this.leftAngle, 115, 120) &&
+					between(this.rightAngle, 110, 115)
+				) {
 					this.count += 1;
 					this.state = false;
 				}
