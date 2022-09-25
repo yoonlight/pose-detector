@@ -27,6 +27,10 @@ class HAR {
 	 *
 	 * 무릎: 3, 9
 	 *
+	 * TODO
+	 *
+	 * - [ ] Refactor duplicated code
+	 *
 	 * Reference
 	 *
 	 * - https://norux.me/61
