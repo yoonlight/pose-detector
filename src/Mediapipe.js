@@ -2,9 +2,9 @@ import { useRef, useEffect, useState, useLayoutEffect } from "react";
 import { Camera } from "@mediapipe/camera_utils";
 // eslint-disable-next-line no-unused-vars
 import { Pose, VERSION, Results } from "@mediapipe/pose";
-import { drawLandmarks, drawConnectors } from "@mediapipe/drawing_utils";
+import { drawLandmarks } from "@mediapipe/drawing_utils";
 import { getDefaultLandmarks } from "./custom/customLandmark";
-import { DEFAULT_POSE_CONNECTIONS } from "./custom/customPoseConnection";
+// import { DEFAULT_POSE_CONNECTIONS } from "./custom/customPoseConnection";
 import { getInputArr } from "./service/input";
 import { detect } from "./service/tf";
 
@@ -12,7 +12,7 @@ function useWindowSize() {
 	const [size, setSize] = useState([0, 0]);
 	useLayoutEffect(() => {
 		function updateSize() {
-			setSize([window.innerWidth, window.innerHeight]);
+			setSize([1152, 648]);
 		}
 		window.addEventListener("resize", updateSize);
 		updateSize();
@@ -41,11 +41,11 @@ const draw = async (ctx, results) => {
 	ctx.drawImage(results.image, 0, 0, cWidth, cHeight);
 
 	ctx.globalCompositeOperation = "source-over";
-	drawConnectors(ctx, landmark, DEFAULT_POSE_CONNECTIONS, {
-		color: "#00FF00",
-		lineWidth: 4,
-	});
-	drawLandmarks(ctx, landmark, {
+	// drawConnectors(ctx, landmark, DEFAULT_POSE_CONNECTIONS, {	//랜드마크 선
+	// 	color: "#00FF00",
+	// 	lineWidth: 4,
+	// });
+	drawLandmarks(ctx, landmark, {	// 랜드마크 점
 		color: "#FF0000",
 		lineWidth: 2,
 	});
@@ -69,6 +69,7 @@ const Canvas = (props) => {
 
 	return <canvas ref={canvasRef} {...props} width={1280} height={720} />;
 };
+
 
 function Mediapipe() {
 	const [results, setResults] = useState(null);
@@ -105,7 +106,7 @@ function Mediapipe() {
 		camera.start();
 	}, []);
 	return (
-		<div>
+		<div className="video">
 			<video
 				ref={inputVideo}
 				playsInline

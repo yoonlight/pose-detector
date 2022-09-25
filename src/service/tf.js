@@ -39,8 +39,8 @@ const getPointAngle = async (landmark) => {
 	const v2 = cv2Vec(landmark, v2Id);
 
 	let v = tf.sub(v2, v1);
-	v = tf.div(v, tf.norm(v));
-	v = await v.array();
+   	v = tf.div(v, (tf.norm(v, 'euclidean', [-1,])).reshape([12,1])); 
+   	v = await v.array();
 
 	const newV1Id = [0, 1, 2, 3, 4, 6, 7, 8, 9, 10];
 	const newV2Id = [1, 2, 3, 4, 5, 7, 8, 9, 10, 11];
@@ -63,13 +63,16 @@ export const detect = async (landmark) => {
 	const seqLength = 15;
 	const joint = getJoint(landmark);
 	const angle = await getPointAngle(landmark);
-	const reshape_angle = angle.reshape([-1, 1]);
-	const scaled_angle = scaler(reshape_angle);
+	const angleList = await angle.data();
+	har.countExercise(angleList);
+	const reshape_angle = angle.reshape([1, -1]);
+	const _scaled_angle = scaler(reshape_angle);
+	const scaled_angle = _scaled_angle.reshape([-1, 1]);
 	const seq = await tf.concat([joint.flatten(), scaled_angle.flatten()]).data();
 	if (har.seq.push(seq) <= seqLength) return;
 	har.seq.shift();
 	const input = tf.expandDims(tf.tensor(har.seq), 0);
 	const result = await har.predict(input);
-	har.result = result[0];
+	har.result = result[1];
 	return result;
 };
