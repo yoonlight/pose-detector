@@ -11,7 +11,7 @@ class HAR {
 	result = 0;
 	state = false;
 	count = 0;
-	pose = ""
+	pose = "";
 	leftAngle = 0;
 	rightAngle = 0;
 
@@ -213,7 +213,7 @@ class HAR {
 				}
 			}
 		},
-	}
+	};
 
 	/**
 	 *
@@ -222,7 +222,7 @@ class HAR {
 	async loadModel(pose) {
 		const modelUrl = `https://raw.githubusercontent.com/kw-kwix/HAR_model/main/model_js/CNN_${pose}_model_tfjs/model.json`;
 		this.model = await tf.loadLayersModel(modelUrl);
-		console.log('load model');
+		console.log("load model");
 		this.seq.splice(0, this.seq.length);
 		this.pose = pose;
 		this.count = 0;
